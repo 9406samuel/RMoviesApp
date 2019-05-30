@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RMoviesApp</string>
+    <string name="tab_text_1">Popular</string>
+    <string name="tab_text_2">Top rated</string>
+    <string name="tab_text_3">Upcoming</string>
+
+    <string name="get_movies_error">An error occurred while getting the movies</string>
+    <string name="retry">retry</string>
+
+</resources>
