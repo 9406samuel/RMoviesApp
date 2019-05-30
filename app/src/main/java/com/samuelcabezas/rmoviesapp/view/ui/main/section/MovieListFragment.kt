@@ -23,7 +23,7 @@ class MovieListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieListViewModel = ViewModelProviders.of(this, ViewModelFactory(context!!))
+        movieListViewModel = ViewModelProviders.of(this, ViewModelFactory(context!!, arguments!!.getInt(CATEGORY)))
             .get(MovieListViewModel::class.java)
     }
 
@@ -51,12 +51,13 @@ class MovieListFragment : Fragment() {
     companion object {
 
         private const val ARG_SECTION_NUMBER = "section_number"
+        private const val CATEGORY = "category"
 
         @JvmStatic
-        fun newInstance(sectionNumber: Int): MovieListFragment {
+        fun newInstance(category: Int): MovieListFragment {
             return MovieListFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_SECTION_NUMBER, sectionNumber)
+                    putInt(CATEGORY, category)
                 }
             }
         }
