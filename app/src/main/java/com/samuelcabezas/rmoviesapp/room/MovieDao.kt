@@ -15,6 +15,7 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(movie: Movie)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    //@Insert
     fun insertMovies(vararg movies: Movie)
 }

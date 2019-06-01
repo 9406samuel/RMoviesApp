@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.ViewGroup
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListFragment
 
@@ -16,8 +17,12 @@ val TAB_TITLES = arrayOf(
 
 class MainPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
+    var fragmentsMap : HashMap<Int, Fragment> = HashMap()
+
     override fun getItem(position: Int): Fragment {
-        return MovieListFragment.newInstance(TAB_TITLES[position])
+        val fragment = MovieListFragment.newInstance(TAB_TITLES[position])
+        fragmentsMap[position] = fragment as Fragment
+        return fragment
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

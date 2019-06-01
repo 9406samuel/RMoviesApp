@@ -9,5 +9,6 @@ class Constants {
         const val CURRENT_POPULAR_MOVIES: String = "movie/popular"
         const val TOP_RATED_MOVIES: String = "movie/top_rated"
         const val UPCOMING_MOVIES: String = "movie/upcoming"
+        const val DISCOVER_MOVIES: String = "movie/upcoming"
     }
 }

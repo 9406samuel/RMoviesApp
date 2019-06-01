@@ -4,7 +4,7 @@
     <string name="tab_text_2">Top rated</string>
     <string name="tab_text_3">Upcoming</string>
 
-    <string name="get_movies_error">An error occurred while getting the movies</string>
+    <string name="get_movies_error">An error occurred while getting the movies, check your internet connection</string>
     <string name="retry">retry</string>
 
 </resources>

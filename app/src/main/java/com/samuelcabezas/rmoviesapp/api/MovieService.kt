@@ -18,4 +18,7 @@ interface MovieService {
     @GET(Constants.UPCOMING_MOVIES)
     fun getUpcomingMovies(@Query(Constants.API_KEY) api_key: String): Observable<MovieResponse>
 
+    @GET(Constants.UPCOMING_MOVIES)
+    fun discoverMovies(@Query(Constants.API_KEY) api_key: String): Observable<MovieResponse>
+
 }
