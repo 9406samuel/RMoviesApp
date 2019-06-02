@@ -6,31 +6,43 @@ import com.samuelcabezas.rmoviesapp.models.entity.Movie
 
 class MovieViewModel : ViewModel() {
 
-    private val movieTitle = MutableLiveData<String>()
-    private val moviePoster = MutableLiveData<String>()
-    private val movieId = MutableLiveData<String>()
-    private val movieReleaseDate = MutableLiveData<String>()
+    private val title = MutableLiveData<String>()
+    private val releaseDate = MutableLiveData<String>()
+    private val overview = MutableLiveData<String>()
+    private val voteAverage = MutableLiveData<String>()
+    private val originalLanguage = MutableLiveData<String>()
+    private val urlImage = MutableLiveData<String>()
 
     fun bind(movie: Movie){
-        movieTitle.value = movie.title
-        moviePoster.value = movie.poster_path
-        movieId.value = movie.id.toString()
-        movieReleaseDate.value = movie.release_date
+        title.value = movie.title
+        releaseDate.value = movie.release_date
+        overview.value = movie.overview
+        voteAverage.value = movie.vote_average.toString()
+        originalLanguage.value = movie.original_language
+        urlImage.value = movie.poster_path
     }
 
-    fun getMovieTitle():MutableLiveData<String>{
-        return movieTitle
+    fun getTitle():MutableLiveData<String>{
+        return title
     }
 
-    fun getMoviePoster():MutableLiveData<String>{
-        return moviePoster
+    fun getReleaseDate():MutableLiveData<String>{
+        return releaseDate
     }
 
-    fun getMovieId():MutableLiveData<String>{
-        return movieId
+    fun getOverview():MutableLiveData<String>{
+        return overview
     }
 
-    fun getMovieReleaseDate():MutableLiveData<String>{
-        return movieReleaseDate
+    fun getVoteAverage():MutableLiveData<String>{
+        return voteAverage
+    }
+
+    fun getOriginalLanguage():MutableLiveData<String>{
+        return originalLanguage
+    }
+
+    fun getUrlImage(): MutableLiveData<String>{
+        return urlImage
     }
 }

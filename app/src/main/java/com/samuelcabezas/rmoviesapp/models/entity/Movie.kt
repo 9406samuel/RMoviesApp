@@ -3,9 +3,12 @@ package com.samuelcabezas.rmoviesapp.models.entity
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
 import android.arch.persistence.room.TypeConverters
+import android.os.Parcelable
 import com.samuelcabezas.rmoviesapp.utils.Converters
+import kotlinx.android.parcel.Parcelize
 
 @Entity
+@Parcelize
 @TypeConverters(Converters::class)
 data class Movie(
     @field:PrimaryKey(autoGenerate = true)
@@ -24,7 +27,7 @@ data class Movie(
     var adult: Boolean?,
     var overview: String?,
     var release_date: String?
-)
+): Parcelable
 
 
 

@@ -8,11 +8,9 @@ import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.room.MovieDao
 import com.samuelcabezas.rmoviesapp.api.ApiClient
-import com.samuelcabezas.rmoviesapp.models.network.MovieResponse
-import com.samuelcabezas.rmoviesapp.utils.Constants
+import com.samuelcabezas.rmoviesapp.utils.Api
 import com.samuelcabezas.rmoviesapp.view.ui.main.TAB_TITLES
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -21,10 +19,14 @@ class MovieListViewModel(private val movieDao: MovieDao) : ViewModel() {
 
     private val tag: String = MovieListViewModel::class.java.simpleName
 
-    val movieListAdapter: MovieListAdapter = MovieListAdapter()
+    val movieListAdapter: MovieListAdapter = MovieListAdapter{
+        loadMovieDetails.value = it
+        //Log.d(tag, it.toString())
+    }
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
-    var loadData= this::loadPosts
+    val loadMoviesList= this::loadPosts
+    val loadMovieDetails: MutableLiveData<Movie> = MutableLiveData()
 
     private lateinit var subscription: Disposable
 
@@ -32,10 +34,10 @@ class MovieListViewModel(private val movieDao: MovieDao) : ViewModel() {
 
         subscription = Observable.fromCallable {
             (when (cate) {
-                TAB_TITLES[0] -> ApiClient.getApiClient().getCurrentPopularMovies(Constants.API_KEY_VALUE)
-                TAB_TITLES[1] -> ApiClient.getApiClient().getTopRatedMovies(Constants.API_KEY_VALUE)
-                TAB_TITLES[2] -> ApiClient.getApiClient().getUpcomingMovies(Constants.API_KEY_VALUE)
-                else -> ApiClient.getApiClient().getUpcomingMovies(Constants.API_KEY_VALUE)
+                TAB_TITLES[0] -> ApiClient.getApiClient().getCurrentPopularMovies()
+                TAB_TITLES[1] -> ApiClient.getApiClient().getTopRatedMovies()
+                TAB_TITLES[2] -> ApiClient.getApiClient().getUpcomingMovies()
+                else -> ApiClient.getApiClient().discoverMovies()
             })
         }.concatMap { apiResponse ->
             apiResponse.concatMap { movieResponse ->

@@ -11,25 +11,24 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListFragment
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SharedViewModel
     private lateinit var viewPager: ViewPager
     private lateinit var sectionsPagerAdapter: MainPagerAdapter
-    private lateinit var tabs: TabLayout
+    //private lateinit var tabs: TabLayout
     private var errorSnackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        viewPager = findViewById(R.id.view_pager)
         sectionsPagerAdapter = MainPagerAdapter(this, supportFragmentManager)
-        viewPager.adapter = sectionsPagerAdapter
-        viewPager.offscreenPageLimit = 3
-        tabs = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
+        view_pager.adapter = sectionsPagerAdapter
+        view_pager.offscreenPageLimit = 3
+        tabs.setupWithViewPager(view_pager)
 
         viewModel = ViewModelProviders.of(this).get(SharedViewModel::class.java)
 
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
      private fun showError(@StringRes errorMessage: Int) {
         errorSnackbar = Snackbar.make(tabs, errorMessage, Snackbar.LENGTH_INDEFINITE)
-        errorSnackbar?.setAction(R.string.retry, { view -> loadMoviesData() })
+        errorSnackbar?.setAction(R.string.retry, { loadMoviesData() })
         errorSnackbar?.show()
     }
 

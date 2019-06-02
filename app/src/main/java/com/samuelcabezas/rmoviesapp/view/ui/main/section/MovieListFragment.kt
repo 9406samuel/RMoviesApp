@@ -2,6 +2,7 @@ package com.samuelcabezas.rmoviesapp.view.ui.main.section
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -12,6 +13,9 @@ import android.view.ViewGroup
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.databinding.FragmentMainBinding
 import com.samuelcabezas.rmoviesapp.factory.ViewModelFactory
+import com.samuelcabezas.rmoviesapp.utils.Constants.CATEGORY
+import com.samuelcabezas.rmoviesapp.utils.Constants.MOVIE
+import com.samuelcabezas.rmoviesapp.view.ui.details.MovieDetailsActivity
 import com.samuelcabezas.rmoviesapp.view.ui.main.SharedViewModel
 
 class MovieListFragment : Fragment() {
@@ -40,24 +44,27 @@ class MovieListFragment : Fragment() {
         movieListViewModel.errorMessage.observe(this, Observer { errorMessage ->
             sharedViewModel.reloadData.postValue(errorMessage)
         })
+        movieListViewModel.loadMovieDetails.observe(this, Observer { movie ->
+            val i = Intent(activity, MovieDetailsActivity::class.java)
+            i.putExtra(MOVIE, movie)
+            startActivity(i)
+        })
         binding.viewModel = movieListViewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieListViewModel.loadData(movieCategory)
+        movieListViewModel.loadMoviesList(movieCategory)
     }
 
     fun loadData() {
         if (::movieListViewModel.isInitialized) {
-            movieListViewModel.loadData(movieCategory)
+            movieListViewModel.loadMoviesList(movieCategory)
         }
     }
 
     companion object {
-
-        private const val CATEGORY = "category"
 
         @JvmStatic
         fun newInstance(category: Int): MovieListFragment {

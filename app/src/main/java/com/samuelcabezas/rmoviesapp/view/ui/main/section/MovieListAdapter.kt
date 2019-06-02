@@ -3,13 +3,15 @@ package com.samuelcabezas.rmoviesapp.view.ui.main.section
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ExpandableListView
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.databinding.MovieListItemBinding
 
 
-class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
+class MovieListAdapter(val selected : (Movie) -> Unit) : RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
 
     private lateinit var moviesList: List<Movie>
 
@@ -31,11 +33,14 @@ class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
         notifyDataSetChanged()
     }
 
-    class MoviesHolder(private val binding: MovieListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MoviesHolder(private val binding: MovieListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        private val viewModel = MovieViewModel()
+        val viewModel = MovieViewModel()
         fun bind(movie: Movie) {
             viewModel.bind(movie)
+            binding.movieItemContainer.setOnClickListener({
+                selected.invoke(movie)
+            })
             binding.viewModel =viewModel
         }
     }
