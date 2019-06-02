@@ -6,6 +6,7 @@ object Api {
 
     const val BASE_URL: String = "http://api.themoviedb.org/3/"
     private const val BASE_POSTER_PATH = "https://image.tmdb.org/t/p/w200"
+    private const val BASE_BACKDROP_PATH = "https://image.tmdb.org/t/p/w780"
 
     const val API_KEY: String = "api_key"
     const val API_KEY_VALUE: String = BuildConfig.TMDB_API_KEY
@@ -20,4 +21,6 @@ object Api {
     const val NOW_PLAYING_MOVIES: String = "movie/now_playing"
 
     fun getPosterPath(posterPath: String) = BASE_POSTER_PATH + posterPath
+
+    fun getBackdropPath(backdropPath: String) = BASE_BACKDROP_PATH + backdropPath
 }

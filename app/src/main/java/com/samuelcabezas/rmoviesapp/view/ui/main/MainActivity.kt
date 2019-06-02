@@ -10,15 +10,14 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.samuelcabezas.rmoviesapp.R
+import com.samuelcabezas.rmoviesapp.R.id.view_pager
 import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: SharedViewModel
-    private lateinit var viewPager: ViewPager
     private lateinit var sectionsPagerAdapter: MainPagerAdapter
-    //private lateinit var tabs: TabLayout
     private var errorSnackbar: Snackbar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadMoviesData(){
-        val pagerAdapter: MainPagerAdapter = viewPager.adapter as MainPagerAdapter
+        val pagerAdapter: MainPagerAdapter = view_pager.adapter as MainPagerAdapter
         pagerAdapter.fragmentsMap.forEach { i, fragment ->
             if(fragment is MovieListFragment){
                 fragment.loadData()

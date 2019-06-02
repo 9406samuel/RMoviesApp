@@ -3,6 +3,7 @@ package com.samuelcabezas.rmoviesapp.view.ui.main.section
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
+import com.samuelcabezas.rmoviesapp.utils.Api
 
 class MovieViewModel : ViewModel() {
 
@@ -11,7 +12,8 @@ class MovieViewModel : ViewModel() {
     private val overview = MutableLiveData<String>()
     private val voteAverage = MutableLiveData<String>()
     private val originalLanguage = MutableLiveData<String>()
-    private val urlImage = MutableLiveData<String>()
+    private val urlPosterImage = MutableLiveData<String>()
+    private val urlBackdropImage = MutableLiveData<String>()
 
     fun bind(movie: Movie){
         title.value = movie.title
@@ -19,7 +21,8 @@ class MovieViewModel : ViewModel() {
         overview.value = movie.overview
         voteAverage.value = movie.vote_average.toString()
         originalLanguage.value = movie.original_language
-        urlImage.value = movie.poster_path
+        urlPosterImage.value = Api.getPosterPath(movie.poster_path)
+        urlBackdropImage.value = Api.getBackdropPath(movie.backdrop_path)
     }
 
     fun getTitle():MutableLiveData<String>{
@@ -42,7 +45,11 @@ class MovieViewModel : ViewModel() {
         return originalLanguage
     }
 
-    fun getUrlImage(): MutableLiveData<String>{
-        return urlImage
+    fun getUrlPosterImage(): MutableLiveData<String> {
+        return urlPosterImage
+    }
+
+    fun getUrlBackdropImage(): MutableLiveData<String> {
+        return urlPosterImage
     }
 }
