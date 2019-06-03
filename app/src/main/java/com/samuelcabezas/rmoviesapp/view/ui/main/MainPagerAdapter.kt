@@ -1,35 +1,26 @@
 package com.samuelcabezas.rmoviesapp.view.ui.main
 
 import android.content.Context
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.view.ViewGroup
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListFragment
 
 val TAB_TITLES = arrayOf(
-    R.string.tab_text_1,
-    R.string.tab_text_2,
-    R.string.tab_text_3
+        R.string.tab_text_1,
+        R.string.tab_text_2,
+        R.string.tab_text_3
 )
 
 class MainPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    var fragmentsMap : HashMap<Int, MovieListFragment> = HashMap()
+    override fun getItem(position: Int): Fragment =
+            MovieListFragment.newInstance(context.resources.getString(TAB_TITLES[position]))
 
-    override fun getItem(position: Int): Fragment {
-        val fragment = MovieListFragment.newInstance(TAB_TITLES[position])
-        fragmentsMap[position] = fragment
-        return fragment
-    }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return context.resources.getString(TAB_TITLES[position])
-    }
+    override fun getPageTitle(position: Int): CharSequence? =
+            context.resources.getString(TAB_TITLES[position])
 
-    override fun getCount(): Int {
-        return 3
-    }
+    override fun getCount(): Int = 3
 }

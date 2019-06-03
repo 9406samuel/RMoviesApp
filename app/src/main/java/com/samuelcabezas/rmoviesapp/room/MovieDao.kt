@@ -12,6 +12,9 @@ interface MovieDao {
     @get:Query("SELECT * FROM Movie")
     val movies: List<Movie>
 
+    @Query("SELECT * FROM Movie where category =:category")
+    fun selectMoviesByCategory(category: String): List<Movie>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertMovie(movie: Movie)
 

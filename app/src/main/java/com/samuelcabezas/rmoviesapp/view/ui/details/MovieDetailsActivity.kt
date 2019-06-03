@@ -10,7 +10,6 @@ import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.utils.Constants
 import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieViewModel
 
-
 class MovieDetailsActivity : AppCompatActivity() {
 
     private lateinit var movieViewModel: MovieViewModel
@@ -23,11 +22,8 @@ class MovieDetailsActivity : AppCompatActivity() {
             movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
             binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
             movieViewModel.bind(getMovieFromIntent())
-
             binding.viewModel = movieViewModel
-
     }
 
     private fun getMovieFromIntent(): Movie = intent.getParcelableExtra(Constants.MOVIE) as Movie
-
 }

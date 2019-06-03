@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -16,26 +17,23 @@ import com.samuelcabezas.rmoviesapp.factory.ViewModelFactory
 import com.samuelcabezas.rmoviesapp.utils.Constants
 import com.samuelcabezas.rmoviesapp.utils.Constants.CATEGORY
 import com.samuelcabezas.rmoviesapp.view.ui.details.MovieDetailsActivity
-import com.samuelcabezas.rmoviesapp.view.ui.main.SharedViewModel
+import com.samuelcabezas.rmoviesapp.view.ui.main.MainActivity
+import kotlinx.android.parcel.Parcelize
 
-class MovieListFragment : Fragment() {
+@Parcelize
+class MovieListFragment : Fragment(), Parcelable {
 
     private lateinit var movieListViewModel: MovieListViewModel
-    private lateinit var sharedViewModel: SharedViewModel
     private lateinit var binding: FragmentMainBinding
-    private var movieCategory: Int = -1
+    private lateinit var movieCategory: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         movieListViewModel = ViewModelProviders.of(
-                this, ViewModelFactory(context!!, arguments!!.getInt(CATEGORY)))
+                this, ViewModelFactory(context!!, arguments!!.getString(CATEGORY)))
                 .get(MovieListViewModel::class.java)
-
-        activity?.let {
-            sharedViewModel = ViewModelProviders.of(it).get(SharedViewModel::class.java)
-        }
-        movieCategory = arguments!!.getInt(CATEGORY)
+        movieCategory = arguments!!.getString(CATEGORY)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -46,29 +44,33 @@ class MovieListFragment : Fragment() {
             val intent = Intent(activity, MovieDetailsActivity::class.java)
             intent.putExtra(Constants.MOVIE, movie)
             startActivity(intent)
-
         }
+
         movieListViewModel.errorMessage.observe(this, Observer { errorMessage ->
-            sharedViewModel.reloadData.postValue(errorMessage)
+            val parent = activity as MainActivity
+            if (errorMessage != null) {
+                parent.addCurrentFragment(this)
+                parent.showError(errorMessage)
+            } else parent.hideError()
         })
 
         binding.viewModel = movieListViewModel
         return binding.root
     }
 
-    fun loadData() {
+    fun loadDataFromAPI() {
         if (::movieListViewModel.isInitialized) {
-            movieListViewModel.loadMoviesList(movieCategory)
+            movieListViewModel.loadMoviesListFromAPI(movieCategory)
         }
     }
 
     companion object {
 
         @JvmStatic
-        fun newInstance(category: Int): MovieListFragment {
+        fun newInstance(category: String): MovieListFragment {
             return MovieListFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(CATEGORY, category)
+                    putString(CATEGORY, category)
                 }
             }
         }

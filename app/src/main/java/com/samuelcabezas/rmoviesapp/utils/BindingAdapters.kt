@@ -10,6 +10,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.samuelcabezas.rmoviesapp.R
 import net.gahfy.mvvmposts.utils.extension.getParentActivity
+import android.support.v4.view.ViewPager
+import android.support.design.widget.TabLayout
+import com.samuelcabezas.rmoviesapp.view.ui.main.MainActivity
+import com.samuelcabezas.rmoviesapp.view.ui.main.MainPagerAdapter
+
 
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
@@ -32,12 +37,22 @@ fun setMutableText(view: TextView,  text: MutableLiveData<String>?) {
     }
 }
 
-//@BindingAdapter("bind:image_url")
 @BindingAdapter("mutableImage")
 fun setMutableImage(imageView: ImageView, url: String) {
     GlideApp.with(imageView.context)
             .load(url)
             .placeholder(R.drawable.no_image)
             .into(imageView)
+}
 
+@BindingAdapter("mutableViewPager")
+fun setMutableViewPager(view: ViewPager, activity: MainActivity) {
+    val adapter = MainPagerAdapter(view.context, activity.supportFragmentManager)
+    view.offscreenPageLimit = 3
+    view.adapter = adapter
+}
+
+@BindingAdapter("mutablePager")
+fun setMutablePager(view: TabLayout, pagerView: ViewPager) {
+    view.setupWithViewPager(pagerView)
 }

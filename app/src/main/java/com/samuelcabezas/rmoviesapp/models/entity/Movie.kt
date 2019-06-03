@@ -13,6 +13,7 @@ import kotlinx.android.parcel.Parcelize
 data class Movie(
     @field:PrimaryKey(autoGenerate = true)
     var movie_id: Int,
+    var category: String,
     var vote_count: Int?,
     var id: Int?,
     var video: Boolean?,
