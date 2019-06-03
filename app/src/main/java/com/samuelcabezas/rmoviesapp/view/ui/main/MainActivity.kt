@@ -12,7 +12,6 @@ import android.widget.Toast
 import android.support.v4.view.accessibility.AccessibilityEventCompat.setAction
 
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var errorSnackbar: Snackbar
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         fragments = ArrayList()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.handler = this
-        binding.manager =supportFragmentManager
+        binding.manager = supportFragmentManager
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
@@ -45,25 +44,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun addCurrentFragment(currentFragment: MovieListFragment){
-        if(fragments.size >=0 && fragments.size < binding.tabs.tabCount)
+    fun addCurrentFragment(currentFragment: MovieListFragment) {
+        if (fragments.size >= 0 && fragments.size < binding.tabs.tabCount)
             fragments.add(currentFragment)
     }
 
     fun showError(@StringRes errorMessage: Int) {
         errorSnackbar = Snackbar.make(this.findViewById(android.R.id.content), errorMessage, Snackbar.LENGTH_INDEFINITE)
         errorSnackbar.setAction(R.string.retry, { requestMoviesData() })
-        if(!isSnackbarShowing) {
+        if (!isSnackbarShowing) {
             isSnackbarShowing = true
             errorSnackbar.show()
         }
     }
 
     fun hideError() {
-        if(isSnackbarShowing) {
-            isSnackbarShowing= false
+        if (isSnackbarShowing) {
+            isSnackbarShowing = false
             errorSnackbar.dismiss()
         }
     }
-
 }

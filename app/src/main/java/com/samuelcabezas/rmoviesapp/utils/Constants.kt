@@ -1,6 +1,6 @@
 package com.samuelcabezas.rmoviesapp.utils
 
-object Constants{
+object Constants {
     const val CATEGORY = "category"
     const val MOVIE = "movie"
     const val POPULAR = "Popular"

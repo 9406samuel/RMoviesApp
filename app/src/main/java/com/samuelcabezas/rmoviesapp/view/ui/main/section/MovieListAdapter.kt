@@ -8,25 +8,26 @@ import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.databinding.MovieListItemBinding
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 
-class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
+class MovieListAdapter : RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
 
     private lateinit var moviesList: List<Movie>
-    var onItemClick:((Movie) -> Unit)? = null
+    var onItemClick: ((Movie) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesHolder {
         val binding: MovieListItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.movie_list_item, parent, false)
+        binding.movieImage.drawable
         return MoviesHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return if(::moviesList.isInitialized) moviesList.size else 0
+        return if (::moviesList.isInitialized) moviesList.size else 0
     }
 
     override fun onBindViewHolder(holder: MoviesHolder, position: Int) {
         holder.bind(moviesList[position])
     }
 
-   fun updateMoviesList(moviesList: List<Movie>) {
+    fun updateMoviesList(moviesList: List<Movie>) {
         this.moviesList = moviesList
         notifyDataSetChanged()
     }
@@ -39,7 +40,7 @@ class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
             binding.movieItemContainer.setOnClickListener({
                 onItemClick?.invoke(movie)
             })
-            binding.viewModel =viewModel
+            binding.viewModel = viewModel
         }
     }
 }

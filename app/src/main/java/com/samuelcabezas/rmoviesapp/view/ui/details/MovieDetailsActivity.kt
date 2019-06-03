@@ -19,10 +19,10 @@ class MovieDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-            movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
-            binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
-            movieViewModel.bind(getMovieFromIntent())
-            binding.viewModel = movieViewModel
+        movieViewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_movie_details)
+        movieViewModel.bind(getMovieFromIntent())
+        binding.viewModel = movieViewModel
     }
 
     private fun getMovieFromIntent(): Movie = intent.getParcelableExtra(Constants.MOVIE) as Movie

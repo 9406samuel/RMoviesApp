@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.utils.Api
 
-class MovieViewModel: ViewModel(){
+class MovieViewModel : ViewModel() {
     private val title = MutableLiveData<String>()
     private val originalTitle = MutableLiveData<String>()
     private val releaseDate = MutableLiveData<String>()
@@ -17,7 +17,7 @@ class MovieViewModel: ViewModel(){
     private val urlPosterImage = MutableLiveData<String>()
     private val urlBackdropImage = MutableLiveData<String>()
 
-    fun bind(movie: Movie){
+    fun bind(movie: Movie) {
         title.value = movie.title
         originalTitle.value = movie.original_title
         releaseDate.value = movie.release_date
@@ -30,35 +30,35 @@ class MovieViewModel: ViewModel(){
         urlBackdropImage.value = Api.getBackdropPath(movie.backdrop_path)
     }
 
-    fun getTitle():MutableLiveData<String>{
+    fun getTitle(): MutableLiveData<String> {
         return title
     }
 
-    fun getOriginalTitle():MutableLiveData<String>{
+    fun getOriginalTitle(): MutableLiveData<String> {
         return title
     }
 
-    fun getReleaseDate():MutableLiveData<String>{
+    fun getReleaseDate(): MutableLiveData<String> {
         return releaseDate
     }
 
-    fun getOverview():MutableLiveData<String>{
+    fun getOverview(): MutableLiveData<String> {
         return overview
     }
 
-    fun getVoteAverage():MutableLiveData<String>{
+    fun getVoteAverage(): MutableLiveData<String> {
         return voteAverage
     }
 
-    fun getOriginalLanguage():MutableLiveData<String>{
+    fun getOriginalLanguage(): MutableLiveData<String> {
         return originalLanguage
     }
 
-    fun getVoteCount():MutableLiveData<String>{
+    fun getVoteCount(): MutableLiveData<String> {
         return originalLanguage
     }
 
-    fun getPopularity():MutableLiveData<String>{
+    fun getPopularity(): MutableLiveData<String> {
         return originalLanguage
     }
 

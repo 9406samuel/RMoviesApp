@@ -4,7 +4,7 @@ import android.arch.persistence.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class Converters{
+class Converters {
     @TypeConverter
     fun restoreIntList(listOfString: String): List<Int> {
         return Gson().fromJson(listOfString, object : TypeToken<List<Int>>() {

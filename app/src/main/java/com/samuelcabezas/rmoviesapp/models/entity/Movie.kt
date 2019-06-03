@@ -11,24 +11,26 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @TypeConverters(Converters::class)
 data class Movie(
-    @field:PrimaryKey(autoGenerate = true)
-    var movie_id: Int,
-    var category: String,
-    var vote_count: Int?,
-    var id: Int?,
-    var video: Boolean?,
-    var vote_average: Float?,
-    var title: String?,
-    var popularity: Float?,
-    var poster_path: String,
-    var original_language: String?,
-    var original_title: String?,
-    var genre_ids: List<Int>,
-    var backdrop_path: String,
-    var adult: Boolean?,
-    var overview: String?,
-    var release_date: String?
-): Parcelable
+        @field:PrimaryKey(autoGenerate = true)
+        var movie_id: Int,
+        var category: String,
+        var vote_count: Int?,
+        var id: Int?,
+        var video: Boolean?,
+        var vote_average: Float?,
+        var title: String?,
+        var popularity: Float?,
+        var poster_path: String,
+        var original_language: String?,
+        var original_title: String?,
+        var genre_ids: List<Int>,
+        var backdrop_path: String,
+        var adult: Boolean?,
+        var overview: String?,
+        var release_date: String?,
+        var posterImage: String?,
+        var backdropImage: String?
+) : Parcelable
 
 
 
