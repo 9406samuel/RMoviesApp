@@ -4,6 +4,8 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.utils.Api
+import java.text.DateFormat
+import java.util.*
 
 class MovieViewModel : ViewModel() {
     private val title = MutableLiveData<String>()
@@ -35,31 +37,38 @@ class MovieViewModel : ViewModel() {
     }
 
     fun getOriginalTitle(): MutableLiveData<String> {
-        return title
+        originalTitle.value = "Original title: ${originalTitle.value}"
+        return originalTitle
     }
 
     fun getReleaseDate(): MutableLiveData<String> {
+        releaseDate.value = "Release date: ${releaseDate.value}"
         return releaseDate
     }
 
     fun getOverview(): MutableLiveData<String> {
+        overview.value = "Overview: ${overview.value}"
         return overview
     }
 
     fun getVoteAverage(): MutableLiveData<String> {
+        voteAverage.value = "Vote average: ${voteAverage.value}"
         return voteAverage
     }
 
     fun getOriginalLanguage(): MutableLiveData<String> {
+        originalLanguage.value = "Original language: ${originalLanguage.value}"
         return originalLanguage
     }
 
     fun getVoteCount(): MutableLiveData<String> {
-        return originalLanguage
+        voteCount.value = "Vote count: ${voteCount.value} votes"
+        return voteCount
     }
 
     fun getPopularity(): MutableLiveData<String> {
-        return originalLanguage
+        popularity.value = "Popularity: ${popularity.value}"
+        return popularity
     }
 
     fun getUrlPosterImage(): MutableLiveData<String> {

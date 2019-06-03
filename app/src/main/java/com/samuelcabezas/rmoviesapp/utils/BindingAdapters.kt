@@ -41,7 +41,7 @@ fun setMutableText(view: TextView, text: MutableLiveData<String>?) {
 fun setMutableImage(imageView: ImageView, url: String) {
     GlideApp.with(imageView.context)
             .load(url)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            //.diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)
             .placeholder(R.drawable.no_image)
             .into(imageView)

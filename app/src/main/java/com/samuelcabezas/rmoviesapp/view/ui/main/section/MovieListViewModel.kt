@@ -54,11 +54,14 @@ class MovieListViewModel(private val movieDao: MovieDao, private var category: S
             })
         }.concatMap { apiResponse ->
             apiResponse.concatMap { movieResponse ->
-                movieResponse.getMovieResults().forEach { movie ->
+                var moviesList = movieResponse.getMovieResults()
+                moviesList.forEach { movie ->
                     movie.category = category
+                    movie.movie_id = "${movie.id}-$category"
                     movieDao.insertMovie(movie)
                 }
-                Observable.just(movieResponse.getMovieResults())
+                //movieDao.insertMovies(*(moviesList.toTypedArray()))
+                Observable.just(moviesList)
             }
         }
                 .subscribeOn(Schedulers.io())

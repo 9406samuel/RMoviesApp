@@ -71,10 +71,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="title"
+                        android:textColor="@color/color_title"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:mutableText="@{viewModel.getTitle()}"/>
+                        app:mutableText="@{viewModel.getTitle()}" />
 
                     <TextView
                         android:id="@+id/movie_original_title"
@@ -82,10 +85,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="original_title"
+                        android:textColor="@color/color_text"
                         app:layout_constraintEnd_toStartOf="@+id/movie_title"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_title"
-                        app:mutableText="@{viewModel.getOriginalTitle()}"/>
+                        app:mutableText="@{viewModel.getOriginalTitle()}" />
 
                     <TextView
                         android:id="@+id/movie_release_date"
@@ -93,10 +97,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="release_date"
+                        android:textColor="@color/color_text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_original_title"
-                        app:mutableText="@{viewModel.getReleaseDate()}"/>
+                        app:mutableText="@{viewModel.getReleaseDate()}" />
 
                     <TextView
                         android:id="@+id/movie_overview"
@@ -104,10 +109,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="movie_overview"
+                        android:textColor="@color/color_text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_release_date"
-                        app:mutableText="@{viewModel.getOverview()}"/>
+                        app:mutableText="@{viewModel.getOverview()}" />
 
                     <TextView
                         android:id="@+id/movie_vote_average"
@@ -115,10 +121,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="vote_average"
+                        android:textColor="@color/color_text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_overview"
-                        app:mutableText="@{viewModel.getVoteAverage()}"/>
+                        app:mutableText="@{viewModel.getVoteAverage()}" />
 
                     <TextView
                         android:id="@+id/movie_default_language"
@@ -126,10 +133,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="default_language"
+                        android:textColor="@color/color_text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_vote_average"
-                        app:mutableText="@{viewModel.getOriginalLanguage()}"/>
+                        app:mutableText="@{viewModel.getOriginalLanguage()}" />
 
                     <TextView
                         android:id="@+id/movie_vote_count"
@@ -137,10 +145,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="vote_count"
+                        android:textColor="@color/color_text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_default_language"
-                        app:mutableText="@{viewModel.getVoteCount()}"/>
+                        app:mutableText="@{viewModel.getVoteCount()}" />
 
                     <TextView
                         android:id="@+id/movie_popularity"
@@ -148,11 +157,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="popularity"
+                        android:textColor="@color/color_text"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/movie_vote_count"
-                        app:mutableText="@{viewModel.getPopularity()}"/>
+                        app:mutableText="@{viewModel.getPopularity()}" />
 
                 </android.support.constraint.ConstraintLayout>
 
