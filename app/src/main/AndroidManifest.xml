@@ -25,11 +25,9 @@
         <activity
             android:name=".view.ui.details.MovieDetailsActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".view.ui.details.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+
     </application>
 
 </manifest>

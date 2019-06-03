@@ -13,8 +13,8 @@ import android.view.ViewGroup
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.databinding.FragmentMainBinding
 import com.samuelcabezas.rmoviesapp.factory.ViewModelFactory
+import com.samuelcabezas.rmoviesapp.utils.Constants
 import com.samuelcabezas.rmoviesapp.utils.Constants.CATEGORY
-import com.samuelcabezas.rmoviesapp.utils.Constants.MOVIE
 import com.samuelcabezas.rmoviesapp.view.ui.details.MovieDetailsActivity
 import com.samuelcabezas.rmoviesapp.view.ui.main.SharedViewModel
 
@@ -28,7 +28,8 @@ class MovieListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        movieListViewModel = ViewModelProviders.of(this, ViewModelFactory(context!!))
+        movieListViewModel = ViewModelProviders.of(
+                this, ViewModelFactory(context!!, arguments!!.getInt(CATEGORY)))
                 .get(MovieListViewModel::class.java)
 
         activity?.let {
@@ -41,21 +42,18 @@ class MovieListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         binding.rvMoviesList.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
+        movieListViewModel.movieListAdapter.onItemClick = { movie ->
+            val intent = Intent(activity, MovieDetailsActivity::class.java)
+            intent.putExtra(Constants.MOVIE, movie)
+            startActivity(intent)
+
+        }
         movieListViewModel.errorMessage.observe(this, Observer { errorMessage ->
             sharedViewModel.reloadData.postValue(errorMessage)
         })
-        movieListViewModel.loadMovieDetails.observe(this, Observer { movie ->
-            val i = Intent(activity, MovieDetailsActivity::class.java)
-            i.putExtra(MOVIE, movie)
-            startActivity(i)
-        })
+
         binding.viewModel = movieListViewModel
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        movieListViewModel.loadMoviesList(movieCategory)
     }
 
     fun loadData() {

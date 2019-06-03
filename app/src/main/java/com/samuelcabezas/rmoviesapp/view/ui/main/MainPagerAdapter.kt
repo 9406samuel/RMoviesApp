@@ -17,11 +17,11 @@ val TAB_TITLES = arrayOf(
 
 class MainPagerAdapter(private val context: Context, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-    var fragmentsMap : HashMap<Int, Fragment> = HashMap()
+    var fragmentsMap : HashMap<Int, MovieListFragment> = HashMap()
 
     override fun getItem(position: Int): Fragment {
         val fragment = MovieListFragment.newInstance(TAB_TITLES[position])
-        fragmentsMap[position] = fragment as Fragment
+        fragmentsMap[position] = fragment
         return fragment
     }
 

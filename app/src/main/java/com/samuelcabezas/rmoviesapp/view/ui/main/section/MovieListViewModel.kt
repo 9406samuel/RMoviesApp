@@ -8,28 +8,26 @@ import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.room.MovieDao
 import com.samuelcabezas.rmoviesapp.api.ApiClient
-import com.samuelcabezas.rmoviesapp.utils.Api
 import com.samuelcabezas.rmoviesapp.view.ui.main.TAB_TITLES
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
-class MovieListViewModel(private val movieDao: MovieDao) : ViewModel() {
+class MovieListViewModel(private val movieDao: MovieDao, category: Int) : ViewModel() {
 
     private val tag: String = MovieListViewModel::class.java.simpleName
 
-    val movieListAdapter: MovieListAdapter = MovieListAdapter{
-        loadMovieDetails.value = it
-        //Log.d(tag, it.toString())
-    }
+    val movieListAdapter: MovieListAdapter = MovieListAdapter()
     val loadingVisibility: MutableLiveData<Int> = MutableLiveData()
     val errorMessage: MutableLiveData<Int> = MutableLiveData()
     val loadMoviesList= this::loadPosts
-    val loadMovieDetails: MutableLiveData<Movie> = MutableLiveData()
 
     private lateinit var subscription: Disposable
 
+    init{
+        loadPosts(category)
+    }
     private fun loadPosts(cate: Int) {
 
         subscription = Observable.fromCallable {
@@ -68,7 +66,7 @@ class MovieListViewModel(private val movieDao: MovieDao) : ViewModel() {
     }
 
     private fun onRetrievePostListSuccess(postList: List<Movie>) {
-        movieListAdapter.updatePostList(postList)
+        movieListAdapter.updateMoviesList(postList)
     }
 
     private fun onRetrievePostListError(error: Throwable) {

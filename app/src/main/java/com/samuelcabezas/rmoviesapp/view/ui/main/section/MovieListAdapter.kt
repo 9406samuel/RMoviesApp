@@ -3,17 +3,15 @@ package com.samuelcabezas.rmoviesapp.view.ui.main.section
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListView
 import com.samuelcabezas.rmoviesapp.R
-import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.databinding.MovieListItemBinding
+import com.samuelcabezas.rmoviesapp.models.entity.Movie
 
-
-class MovieListAdapter(val selected : (Movie) -> Unit) : RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
+class MovieListAdapter: RecyclerView.Adapter<MovieListAdapter.MoviesHolder>() {
 
     private lateinit var moviesList: List<Movie>
+    var onItemClick:((Movie) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesHolder {
         val binding: MovieListItemBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.movie_list_item, parent, false)
@@ -28,7 +26,7 @@ class MovieListAdapter(val selected : (Movie) -> Unit) : RecyclerView.Adapter<Mo
         holder.bind(moviesList[position])
     }
 
-    fun updatePostList(moviesList: List<Movie>) {
+   fun updateMoviesList(moviesList: List<Movie>) {
         this.moviesList = moviesList
         notifyDataSetChanged()
     }
@@ -39,7 +37,7 @@ class MovieListAdapter(val selected : (Movie) -> Unit) : RecyclerView.Adapter<Mo
         fun bind(movie: Movie) {
             viewModel.bind(movie)
             binding.movieItemContainer.setOnClickListener({
-                selected.invoke(movie)
+                onItemClick?.invoke(movie)
             })
             binding.viewModel =viewModel
         }
