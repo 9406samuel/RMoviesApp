@@ -1,4 +1,4 @@
-package com.samuelcabezas.rmoviesapp.view.ui.main.section
+package com.samuelcabezas.rmoviesapp.view.main.category
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
@@ -9,7 +9,7 @@ import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.api.ApiClient
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.room.MovieDao
-import com.samuelcabezas.rmoviesapp.utils.Api
+import com.samuelcabezas.rmoviesapp.utils.ApiConstants
 import com.samuelcabezas.rmoviesapp.utils.Constants.POPULAR
 import com.samuelcabezas.rmoviesapp.utils.Constants.TOP_RATED
 import com.samuelcabezas.rmoviesapp.utils.Constants.UPCOMING
@@ -47,10 +47,10 @@ class MovieListViewModel(private val movieDao: MovieDao, private var category: S
 
         onlineSubscription = Observable.fromCallable {
             (when (category) {
-                POPULAR -> ApiClient.getApiClient(Api.API_BASE_URL).getCurrentPopularMovies()
-                TOP_RATED -> ApiClient.getApiClient(Api.API_BASE_URL).getTopRatedMovies()
-                UPCOMING -> ApiClient.getApiClient(Api.API_BASE_URL).getUpcomingMovies()
-                else -> ApiClient.getApiClient(Api.API_BASE_URL).discoverMovies()
+                POPULAR -> ApiClient.getApiClient(ApiConstants.API_BASE_URL).getCurrentPopularMovies()
+                TOP_RATED -> ApiClient.getApiClient(ApiConstants.API_BASE_URL).getTopRatedMovies()
+                UPCOMING -> ApiClient.getApiClient(ApiConstants.API_BASE_URL).getUpcomingMovies()
+                else -> ApiClient.getApiClient(ApiConstants.API_BASE_URL).discoverMovies()
             })
         }.concatMap { apiResponse ->
             apiResponse.concatMap { movieResponse ->
@@ -60,7 +60,6 @@ class MovieListViewModel(private val movieDao: MovieDao, private var category: S
                     movie.movie_id = "${movie.id}-$category"
                     movieDao.insertMovie(movie)
                 }
-                //movieDao.insertMovies(*(moviesList.toTypedArray()))
                 Observable.just(moviesList)
             }
         }
@@ -129,7 +128,7 @@ class MovieListViewModel(private val movieDao: MovieDao, private var category: S
 
     private fun onRetrieveMoviesListSuccess(postList: List<Movie>) {
         //TODO: Save images locally as files and load them from Glide in Views
-        // postList.forEach { m -> getImagesFromAPI(Api.BASE_POSTER_URL, m) }
+        // postList.forEach { m -> getImagesFromAPI(ApiConstants.BASE_POSTER_URL, m) }
         movieListAdapter.updateMoviesList(postList)
     }
 

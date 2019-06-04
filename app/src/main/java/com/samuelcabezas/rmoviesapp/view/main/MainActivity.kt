@@ -1,4 +1,4 @@
-package com.samuelcabezas.rmoviesapp.view.ui.main
+package com.samuelcabezas.rmoviesapp.view.main
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -7,10 +7,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.databinding.ActivityMainBinding
-import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListFragment
-import android.widget.Toast
-import android.support.v4.view.accessibility.AccessibilityEventCompat.setAction
-
+import com.samuelcabezas.rmoviesapp.utils.Constants.FRAGMENTS
+import com.samuelcabezas.rmoviesapp.view.main.category.MovieListFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,12 +28,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
-        outState?.putParcelableArrayList("fragments", fragments)
+        outState?.putParcelableArrayList(FRAGMENTS, fragments)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
         super.onRestoreInstanceState(savedInstanceState)
-        fragments = savedInstanceState?.getParcelableArrayList<MovieListFragment>("fragments") as ArrayList<MovieListFragment>
+        fragments = savedInstanceState?.
+                getParcelableArrayList<MovieListFragment>(FRAGMENTS) as ArrayList<MovieListFragment>
     }
 
     private fun requestMoviesData() {

@@ -11,7 +11,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @TypeConverters(Converters::class)
 data class Movie(
-        //@field:PrimaryKey(autoGenerate = true)
         @field:PrimaryKey
         var movie_id: String,
         var category: String,

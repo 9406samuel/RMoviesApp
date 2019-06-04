@@ -1,4 +1,4 @@
-package com.samuelcabezas.rmoviesapp.view.ui.main.section
+package com.samuelcabezas.rmoviesapp.view.main.category
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -16,8 +16,8 @@ import com.samuelcabezas.rmoviesapp.databinding.FragmentMainBinding
 import com.samuelcabezas.rmoviesapp.factory.ViewModelFactory
 import com.samuelcabezas.rmoviesapp.utils.Constants
 import com.samuelcabezas.rmoviesapp.utils.Constants.CATEGORY
-import com.samuelcabezas.rmoviesapp.view.ui.details.MovieDetailsActivity
-import com.samuelcabezas.rmoviesapp.view.ui.main.MainActivity
+import com.samuelcabezas.rmoviesapp.view.details.MovieDetailsActivity
+import com.samuelcabezas.rmoviesapp.view.main.MainActivity
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize

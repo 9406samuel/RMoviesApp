@@ -6,5 +6,5 @@ object Constants {
     const val POPULAR = "Popular"
     const val TOP_RATED = "Top rated"
     const val UPCOMING = "Upcoming"
-
+    const val FRAGMENTS = "fragments"
 }

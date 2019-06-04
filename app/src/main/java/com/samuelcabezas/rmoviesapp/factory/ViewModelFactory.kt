@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.arch.persistence.room.Room
 import android.content.Context
 import com.samuelcabezas.rmoviesapp.room.AppDatabase
-import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListViewModel
+import com.samuelcabezas.rmoviesapp.view.main.category.MovieListViewModel
 
 class ViewModelFactory(private val context: Context, private val category: String) : ViewModelProvider.Factory {
 

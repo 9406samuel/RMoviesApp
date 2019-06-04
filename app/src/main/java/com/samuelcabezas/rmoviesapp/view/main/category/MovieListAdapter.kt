@@ -1,4 +1,4 @@
-package com.samuelcabezas.rmoviesapp.view.ui.main.section
+package com.samuelcabezas.rmoviesapp.view.main.category
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView

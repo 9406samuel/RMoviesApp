@@ -1,4 +1,4 @@
-package com.samuelcabezas.rmoviesapp.view.ui.details
+package com.samuelcabezas.rmoviesapp.view.details
 
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
@@ -8,7 +8,7 @@ import com.samuelcabezas.rmoviesapp.R
 import com.samuelcabezas.rmoviesapp.databinding.ActivityMovieDetailsBinding
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
 import com.samuelcabezas.rmoviesapp.utils.Constants
-import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieViewModel
+import com.samuelcabezas.rmoviesapp.view.main.category.MovieViewModel
 
 class MovieDetailsActivity : AppCompatActivity() {
 

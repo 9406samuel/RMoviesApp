@@ -12,9 +12,8 @@ import com.samuelcabezas.rmoviesapp.R
 import net.gahfy.mvvmposts.utils.extension.getParentActivity
 import android.support.v4.view.ViewPager
 import android.support.design.widget.TabLayout
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.samuelcabezas.rmoviesapp.view.ui.main.MainActivity
-import com.samuelcabezas.rmoviesapp.view.ui.main.MainPagerAdapter
+import com.samuelcabezas.rmoviesapp.view.main.MainActivity
+import com.samuelcabezas.rmoviesapp.view.main.MainPagerAdapter
 
 @BindingAdapter("adapter")
 fun setAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {

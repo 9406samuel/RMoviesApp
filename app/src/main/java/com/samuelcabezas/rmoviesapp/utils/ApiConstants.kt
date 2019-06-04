@@ -2,7 +2,7 @@ package com.samuelcabezas.rmoviesapp.utils
 
 import com.samuelcabezas.rmoviesapp.BuildConfig
 
-object Api {
+object ApiConstants {
 
     const val API_BASE_URL: String = "http://api.themoviedb.org/3/"
     const val BASE_POSTER_URL = "https://image.tmdb.org/t/p/w200"

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.ui.main.MainActivity"
+            android:name="com.samuelcabezas.rmoviesapp.view.main.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -23,11 +23,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.ui.details.MovieDetailsActivity"
-            android:label="@string/title_activity_scrolling"
+            android:name="com.samuelcabezas.rmoviesapp.view.details.MovieDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             />
-
     </application>
 
 </manifest>

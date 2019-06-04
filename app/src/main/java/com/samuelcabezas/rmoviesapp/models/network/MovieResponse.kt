@@ -11,5 +11,4 @@ data class MovieResponse(
     fun getMovieResults(): List<Movie> {
         return results
     }
-
 }

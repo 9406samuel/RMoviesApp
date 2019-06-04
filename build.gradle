@@ -10,12 +10,11 @@ buildscript {
     ext.gradle_version = '3.1.0'
     ext.glideVersion = '4.9.0'
 
-
     repositories {
         google()
         jcenter()
-        
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
@@ -28,7 +27,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
     }
 }
 

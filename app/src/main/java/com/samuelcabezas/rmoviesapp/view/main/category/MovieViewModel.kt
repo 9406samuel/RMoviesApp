@@ -1,11 +1,9 @@
-package com.samuelcabezas.rmoviesapp.view.ui.main.section
+package com.samuelcabezas.rmoviesapp.view.main.category
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import com.samuelcabezas.rmoviesapp.models.entity.Movie
-import com.samuelcabezas.rmoviesapp.utils.Api
-import java.text.DateFormat
-import java.util.*
+import com.samuelcabezas.rmoviesapp.utils.ApiConstants
 
 class MovieViewModel : ViewModel() {
     private val title = MutableLiveData<String>()
@@ -28,8 +26,8 @@ class MovieViewModel : ViewModel() {
         originalLanguage.value = movie.original_language
         voteCount.value = movie.vote_count.toString()
         popularity.value = movie.popularity.toString()
-        urlPosterImage.value = Api.getPosterPath(movie.poster_path)
-        urlBackdropImage.value = Api.getBackdropPath(movie.backdrop_path)
+        urlPosterImage.value = ApiConstants.getPosterPath(movie.poster_path)
+        urlBackdropImage.value = ApiConstants.getBackdropPath(movie.backdrop_path)
     }
 
     fun getTitle(): MutableLiveData<String> {

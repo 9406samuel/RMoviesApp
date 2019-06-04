@@ -4,7 +4,7 @@
 <data>
     <variable
         name="viewModel"
-        type="com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieViewModel" />
+        type="com.samuelcabezas.rmoviesapp.view.main.category.MovieViewModel" />
 </data>
 
     <android.support.constraint.ConstraintLayout
@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
-        <!--tools:context=".view.ui.details.MovieDetailsActivity"-->
 
         <ScrollView
             android:id="@+id/movie_details_scroll_view"
@@ -165,13 +164,7 @@
                         app:mutableText="@{viewModel.getPopularity()}" />
 
                 </android.support.constraint.ConstraintLayout>
-
             </android.support.constraint.ConstraintLayout>
-
-
         </ScrollView>
-
-
     </android.support.constraint.ConstraintLayout>
-
 </layout>

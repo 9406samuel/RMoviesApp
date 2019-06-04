@@ -1,11 +1,11 @@
-package com.samuelcabezas.rmoviesapp.view.ui.main
+package com.samuelcabezas.rmoviesapp.view.main
 
 import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.samuelcabezas.rmoviesapp.R
-import com.samuelcabezas.rmoviesapp.view.ui.main.section.MovieListFragment
+import com.samuelcabezas.rmoviesapp.view.main.category.MovieListFragment
 
 private val TAB_TITLES = arrayOf(
         R.string.tab_text_1,
